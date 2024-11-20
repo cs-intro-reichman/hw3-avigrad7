@@ -13,7 +13,6 @@ public class LoanCalc {
 		double rate = Double.parseDouble(args[1]);
 		int n = Integer.parseInt(args[2]);
 		System.out.println("Loan = " + loan + ", interest rate = " + rate + "%, periods = " + n);
-		rate /= 100;
 
 		// // Computes the periodical payment using brute force search
 		System.out.print("\nPeriodical payment, using brute force: ");
@@ -29,9 +28,11 @@ public class LoanCalc {
 	// Computes the ending balance of a loan, given the loan amount, the periodical
 	// interest rate (as a percentage), the number of periods (n), and the periodical payment.
 	private static double endBalance(double loan, double rate, int n, double payment) {	
+		rate /= 100;
+		rate++;
 		for (int i = 0; i < n; i++) {
 			loan -= payment;
-			loan *= rate + 1;
+			loan *= rate;
 		}
 		return loan;
 	}
